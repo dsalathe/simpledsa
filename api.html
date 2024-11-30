@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; SimpleDSA 0.2.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b1f64a84"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="Usage Examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SimpleDSA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Usage Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-simpledsa.priority_queue">Priority Queue</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue"><code class="docutils literal notranslate"><span class="pre">PriorityQueue</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.extend"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.extend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.extend_with_priority"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.extend_with_priority()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.from_items"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.from_items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.from_items_with_priority"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.from_items_with_priority()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.is_empty"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.is_empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.merge"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.merge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.peek"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.peek()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.pop"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.pop_all"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.pop_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue.push"><code class="docutils literal notranslate"><span class="pre">PriorityQueue.push()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-simpledsa.priority_functions">Priority Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpledsa.priority_functions.by_attr"><code class="docutils literal notranslate"><span class="pre">by_attr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpledsa.priority_functions.by_length"><code class="docutils literal notranslate"><span class="pre">by_length()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simpledsa.priority_functions.reverse"><code class="docutils literal notranslate"><span class="pre">reverse()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SimpleDSA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h1>
+<section id="module-simpledsa.priority_queue">
+<span id="priority-queue"></span><h2>Priority Queue<a class="headerlink" href="#module-simpledsa.priority_queue" title="Permalink to this heading"></a></h2>
+<p>Simple Priority Queue.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">simpledsa.priority_queue.</span></span><span class="sig-name descname"><span class="pre">PriorityQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_func:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PriorityQueue.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">P</span></code>]</p>
+<p>A flexible Priority Queue implementation supporting both min-heap and max-heap behavior.</p>
+<p>Items can either carry their own priority or be assigned one explicitly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key_func</strong> (<em>Callable</em><em>, </em><em>optional</em>) – Function to extract priority from items.
+Default is the identity function (item is its own priority).
+For max-heap behavior, use: priority_functions.reverse</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.extend">
+<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.extend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.extend" title="Permalink to this definition"></a></dt>
+<dd><p>Add multiple items to the queue, using each item as its own priority.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>items</strong> – Sequence of items to add</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pq</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">pop_all</span><span class="p">())</span>
+<span class="go">[1, 3, 4]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.extend_with_priority">
+<span class="sig-name descname"><span class="pre">extend_with_priority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">P</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.extend_with_priority"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.extend_with_priority" title="Permalink to this definition"></a></dt>
+<dd><p>Add multiple items with explicit priorities to the queue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>items</strong> – Sequence of (item, priority) tuples</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pq</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pq</span><span class="o">.</span><span class="n">extend_with_priority</span><span class="p">([(</span><span class="s2">&quot;task1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;task2&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">pop_all</span><span class="p">())</span>
+<span class="go">[&#39;task2&#39;, &#39;task1&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.from_items">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">items:</span> <span class="pre">~typing.List[~simpledsa.priority_queue.T],</span> <span class="pre">key_func:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PriorityQueue.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue" title="simpledsa.priority_queue.PriorityQueue"><span class="pre">PriorityQueue</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">P</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.from_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.from_items" title="Permalink to this definition"></a></dt>
+<dd><p>Create a PriorityQueue from a list of items.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> – List of items to add to the queue</p></li>
+<li><p><strong>key_func</strong> – Optional priority function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New PriorityQueue containing the items</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.from_items_with_priority">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_items_with_priority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">pairs:</span> <span class="pre">~typing.List[~typing.Tuple[~simpledsa.priority_queue.T,</span> <span class="pre">~simpledsa.priority_queue.P]],</span> <span class="pre">key_func:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">PriorityQueue.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue" title="simpledsa.priority_queue.PriorityQueue"><span class="pre">PriorityQueue</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">P</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.from_items_with_priority"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.from_items_with_priority" title="Permalink to this definition"></a></dt>
+<dd><p>Create a PriorityQueue from a list of (item, priority) pairs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pairs</strong> – List of (item, priority) tuples</p></li>
+<li><p><strong>key_func</strong> – Optional priority function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New PriorityQueue containing the items</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.is_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.is_empty" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the priority queue is empty.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.merge">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queues</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue" title="simpledsa.priority_queue.PriorityQueue"><span class="pre">PriorityQueue</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">P</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#simpledsa.priority_queue.PriorityQueue" title="simpledsa.priority_queue.PriorityQueue"><span class="pre">PriorityQueue</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">P</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.merge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.merge" title="Permalink to this definition"></a></dt>
+<dd><p>Merge multiple PriorityQueues into a new one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>queues</strong> – List of PriorityQueues to merge</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New PriorityQueue containing all items</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All queues must use the same key_func</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.peek">
+<span class="sig-name descname"><span class="pre">peek</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.peek"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.peek" title="Permalink to this definition"></a></dt>
+<dd><p>Return the highest priority item without removing it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The item with the highest priority</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If the queue is empty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.pop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.pop" title="Permalink to this definition"></a></dt>
+<dd><p>Remove and return the highest priority item.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The item with the highest priority</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>IndexError</strong> – If the queue is empty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.pop_all">
+<span class="sig-name descname"><span class="pre">pop_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.pop_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.pop_all" title="Permalink to this definition"></a></dt>
+<dd><p>Iterate through and remove all items in priority order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Iterator yielding items in priority order</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simpledsa.priority_queue.PriorityQueue.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">P</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/simpledsa/priority_queue.html#PriorityQueue.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_queue.PriorityQueue.push" title="Permalink to this definition"></a></dt>
+<dd><p>Add an item to the priority queue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item</strong> – The item to be added</p></li>
+<li><p><strong>priority</strong> (<em>optional</em>) – External priority value. If not provided,
+the item’s own value will be used as priority</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-simpledsa.priority_functions">
+<span id="priority-functions"></span><h2>Priority Functions<a class="headerlink" href="#module-simpledsa.priority_functions" title="Permalink to this heading"></a></h2>
+<p>Default functions to set up priority rules for the Priority Queue.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="simpledsa.priority_functions.by_attr">
+<span class="sig-prename descclassname"><span class="pre">simpledsa.priority_functions.</span></span><span class="sig-name descname"><span class="pre">by_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/simpledsa/priority_functions.html#by_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_functions.by_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Create a priority function using an attribute of items.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpledsa.priority_functions.by_length">
+<span class="sig-prename descclassname"><span class="pre">simpledsa.priority_functions.</span></span><span class="sig-name descname"><span class="pre">by_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/simpledsa/priority_functions.html#by_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_functions.by_length" title="Permalink to this definition"></a></dt>
+<dd><p>Priority function using length of items.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simpledsa.priority_functions.reverse">
+<span class="sig-prename descclassname"><span class="pre">simpledsa.priority_functions.</span></span><span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/simpledsa/priority_functions.html#reverse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simpledsa.priority_functions.reverse" title="Permalink to this definition"></a></dt>
+<dd><p>Priority function for max heap behavior.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Usage Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David Salathé.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
