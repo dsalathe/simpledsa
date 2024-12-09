@@ -1,32 +1,37 @@
 """Simple Weighted Directed Graph."""
-from typing import Callable, Generic, TypeVar
+from copy import deepcopy
+from typing import Callable, Dict, Generic, List, Set, Tuple, TypeVar
 
 from priority_queue import PriorityQueue
 
 T = TypeVar("T")
-W = TypeVar("W")
+W = TypeVar("W", int, float)
 
 
-# TODO not sure about the "Weighted",
-# maybe there can be a default weight 1 for unweighted connected graphs
 class WeightedDirectedGraph(Generic[T, W]):
     """
     A Weighted Directed Graph implementation.
 
     Args:
-        edges: list[tuple[T, T, W]] | None: List of edges.
+        edges: List[Tuple[T, T, W]] | None: list of edges.
             Each edge is expected should be a tuple with format:
-            (source_node, destination_node, weight of edge)
+            (source_node, destination_node, weight).
+            Edges should be unique. However nodes can be connected
+            by multiple edges with different weights.
     """
 
-    def __init__(self, edges: list[tuple[T, T, W]] | None = None):
+    def __init__(self, edges: List[Tuple[T, T, W]] | None = None):
         """Init a Weighted Directed Graph."""
         if not edges:
             edges = []
-        self._edges = edges
-        self._adj: dict[T, list[tuple[T, W]]] = self._make_adj()
+        if len(set(edges)) != len(edges):
+            raise ValueError(
+                "Try to inset duplicate edges (source_node, destination_node, weight)"
+            )
+        self._edges: Set[Tuple[T, T, W]] = set(edges)
+        self._adj: Dict[T, List[Tuple[T, W]]] = self._make_adj()
 
-    def _make_adj(self) -> dict[T, list[tuple[T, W]]]:
+    def _make_adj(self) -> Dict[T, List[Tuple[T, W]]]:
         """
         Build an adjacency list from a list of edges.
 
@@ -38,7 +43,7 @@ class WeightedDirectedGraph(Generic[T, W]):
             An adjacency list with format
                 {source_node: [(destination_node, weigth of edge)]}
         """
-        adj: dict[T, list[tuple[T, W]]] = {}
+        adj: Dict[T, List[Tuple[T, W]]] = {}
         for src, dst, w in self._edges:
             if src not in adj:
                 adj[src] = []
@@ -47,8 +52,26 @@ class WeightedDirectedGraph(Generic[T, W]):
             adj[src].append((dst, w))
         return adj
 
+    def add_edge(self, edge: Tuple[T, T, W]) -> None:
+        """Add edge (source, destination, weight) to the graph."""
+        if edge in self._edges:
+            raise ValueError(
+                "Try to insert duplicate edges (source_node, destination_node, weight)"
+            )
+        self._edges.add(edge)
+        src, dst, w = edge
+        if src not in self._adj:
+            self._adj[src] = []
+        if dst not in self._adj:
+            self._adj[dst] = []
+        self._adj[src].append((dst, w))
+
+    def get_adjacency_list(self) -> Dict[T, List[Tuple[T, W]]]:
+        """Return the value of the adjacency list."""
+        return deepcopy(self._adj)
+
     @classmethod
-    def from_adjacency_list(cls, adjacency_list: dict[T, list[tuple[T, W]]]):
+    def from_adjacency_list(cls, adjacency_list: Dict[T, List[Tuple[T, W]]]):
         """
         Create a WeightedDirectedGraph from an adjacency list.
 
@@ -63,9 +86,11 @@ class WeightedDirectedGraph(Generic[T, W]):
         graph._adj = adjacency_list
         return graph
 
-    # TODO 1: need a way to get the priority when popping/peeking from heap
-    # TODO 2: vanilla Dijkstra implementation for now, can be optimized
-    def dijkstra(self, source: T, key_func: Callable = lambda x: x) -> dict[T, W]:
+    def __str__(self) -> str:
+        """Return the string representation of the adjacency list."""
+        return str(self._adj)
+
+    def dijkstra(self, source: T, key_func: Callable = lambda x: x) -> Dict[T, W]:
         """
         Compute the shortest path from source node to all nodes using Dijkstra's algorithm.
 
@@ -78,15 +103,13 @@ class WeightedDirectedGraph(Generic[T, W]):
             The shortest paths from the source node to all other reachable nodes
             If a node is unreachable, then it is not in the output
         """
-        pq = PriorityQueue.from_items_with_priority(
-            [(source, 0)]
-        )  # W should be of int or float, not sure how to check that
+        pq = PriorityQueue.from_items_with_priority([(source, 0)])
         shortest_paths = {}
         while pq:
-            curr_node, curr_distance = pq.pop(get_priority=True)  # See TODO 1 above
+            curr_node, curr_distance = pq.pop_with_priority()
             if curr_node in shortest_paths:
                 continue
             shortest_paths[curr_node] = curr_distance
-            for nei, nei_distance in self._adj[curr_node]:
-                pq.push((nei, curr_distance + nei_distance))
+            for nei_node, nei_distance in self._adj[curr_node]:
+                pq.push(nei_node, curr_distance + nei_distance)
         return shortest_paths

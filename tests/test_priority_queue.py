@@ -22,7 +22,7 @@ class TestPriorityQueue(unittest.TestCase):
         for expected in sorted_items:
             self.assertEqual(self.pq.pop(), expected)
 
-    def test_push_pop_explicit_priority(self):
+    def test_push_explicit_priority(self):
         items = [("task1", 3), ("task2", 1), ("task3", 4)]
         for item, priority in items:
             self.pq.push(item, priority)
@@ -30,6 +30,15 @@ class TestPriorityQueue(unittest.TestCase):
         expected_order = ["task2", "task1", "task3"]
         for expected in expected_order:
             self.assertEqual(self.pq.pop(), expected)
+
+    def test_pop_explicit_priority(self):
+        items = [("task1", 3), ("task2", 1), ("task3", 4)]
+        for item, priority in items:
+            self.pq.push(item, priority)
+
+        expected_order = [("task2", 1), ("task1", 3), ("task3", 4)]
+        for expected in expected_order:
+            self.assertEqual(self.pq.pop_with_priority(), expected)
 
     def test_extend(self):
         """Test extending with items using their own priority."""
@@ -72,6 +81,12 @@ class TestPriorityQueue(unittest.TestCase):
         self.pq.push("task1", 1)
         self.pq.push("task2", 2)
         self.assertEqual(self.pq.peek(), "task1")
+        self.assertEqual(len(self.pq), 2)  # Ensure peek didn't remove item
+
+    def test_peek_with_priority(self):
+        self.pq.push("task1", 1)
+        self.pq.push("task2", 2)
+        self.assertEqual(self.pq.peek_with_priority(), ("task1", 1))
         self.assertEqual(len(self.pq), 2)  # Ensure peek didn't remove item
 
     def test_bool_evaluation(self):
@@ -163,3 +178,37 @@ class TestPriorityQueue(unittest.TestCase):
         pq.extend(tasks)
         result = [t.name for t in pq.pop_all()]
         self.assertEqual(result, ["B", "A", "C"])
+
+    def test_pop_all_with_priority(self):
+        pairs = [("B", 2), ("A", 1), ("C", 3)]
+        pq = PriorityQueue.from_items_with_priority(pairs)
+        self.assertEqual(
+            [x for x in pq.pop_all_with_priority()], sorted(pairs, key=lambda x: x[1])
+        )
+
+    def test_pop_empty_queue_raises_index_error(self):
+        with self.assertRaises(IndexError, msg="pop from an empty priority queue"):
+            self.pq.pop()
+
+    def test_peek_empty_queue_raises_index_error(self):
+        with self.assertRaises(IndexError, msg="peek from an empty priority queue"):
+            self.pq.peek()
+
+    def test_pop_with_priority_empty_queue_raises_index_error(self):
+        with self.assertRaises(IndexError, msg="pop from an empty priority queue"):
+            self.pq.pop_with_priority()
+
+    def test_peek_with_priority_empty_queue_raises_index_error(self):
+        with self.assertRaises(IndexError, msg="peek from an empty priority queue"):
+            self.pq.peek_with_priority()
+
+    def test_string_representation(self):
+        pq = PriorityQueue()
+        items = [("B", 3), ("A", 1), ("C", 4)]
+        pq.extend_with_priority(items)
+
+        expected_representation = "['A', 'B', 'C']"
+        self.assertEqual(str(pq), expected_representation)
+
+        empty_pq = PriorityQueue()
+        self.assertEqual(str(empty_pq), "[]")

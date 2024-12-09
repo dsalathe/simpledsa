@@ -26,3 +26,4 @@ htmlcov/
 env/
 venv/
 ENV/
+sandbox.py
